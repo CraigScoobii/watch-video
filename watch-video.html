@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watch Video</title>
+    <style>
+        #skip-button {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Please watch the following video:</h2>
+    <div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/otR8V7rlnjA?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <button id="skip-button" onclick="redirect()">Skip Ad</button>
+
+    <script>
+        // Show the "Skip Ad" button after 5 seconds
+        setTimeout(function() {
+            document.getElementById('skip-button').style.display = 'block';
+        }, 5000);
+
+        // Redirect to the Google Form's final section
+        function redirect() {
+            window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSe3422dB4T6v8ZdRLOCWfYELY0yJuCFroCH2p2qAEJQ_hV7lQ/viewform";
+        }
+    </script>
+</body>
+</html>

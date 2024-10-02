@@ -20,12 +20,14 @@
 <body>
     <h2>Please watch the following video:</h2>
     <div>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/otR8V7rlnjA?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/otR8V7rlnjA?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
     <button id="skip-button" onclick="redirect()">Skip Ad</button>
 
     <script>
+        let videoStartTime = Date.now(); // Record the start time
+
         // Show the "Skip Ad" button after 5 seconds
         setTimeout(function() {
             document.getElementById('skip-button').style.display = 'block';
@@ -33,7 +35,12 @@
 
         // Redirect to the Google Form's final section
         function redirect() {
-            window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSe3422dB4T6v8ZdRLOCWfYELY0yJuCFroCH2p2qAEJQ_hV7lQ/viewform";
+            // Calculate the elapsed time in seconds
+            let elapsedTime = Math.floor((Date.now() - videoStartTime) / 1000);
+            // Construct the Google Form URL with the elapsed time as a query parameter
+            let formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe3422dB4T6v8ZdRLOCWfYELY0yJuCFroCH2p2qAEJQ_hV7lQ/viewform?entry.123456789=" + elapsedTime;
+            // Redirect to the Google Form
+            window.location.href = formUrl;
         }
     </script>
 </body>

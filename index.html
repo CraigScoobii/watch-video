@@ -15,12 +15,25 @@
             cursor: pointer;
             font-size: 16px;
         }
+        /* Make the video container full window as a fallback */
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
     <h2></h2>
-    <div>
-        <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/otR8V7rlnjA?autoplay=1" frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+    <div id="video-container">
+        <iframe id="video" src="https://www.youtube.com/embed/otR8V7rlnjA?autoplay=1" frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
     </div>
 
     <button id="skip-button" onclick="redirect()">Skip Ad</button>
@@ -35,11 +48,8 @@
 
         // Redirect to the Google Form's final section
         function redirect() {
-            // Calculate the elapsed time in seconds
             let elapsedTime = Math.floor((Date.now() - videoStartTime) / 1000);
-            // Construct the Google Form URL with the elapsed time as a query parameter
             let formUrl = "https://docs.google.com/forms/d/1xJrBxxoE3hx79KQuP2dSv6TILR_MhXfYl6HnTV4ck2M/viewform?entry.445977565=" + elapsedTime;
-            // Redirect to the Google Form
             window.location.href = formUrl;
         }
 
@@ -54,6 +64,10 @@
                 iframe.webkitRequestFullscreen();
             } else if (iframe.msRequestFullscreen) { // IE/Edge
                 iframe.msRequestFullscreen();
+            } else {
+                // Fallback for older browsers like IE
+                document.getElementById('video-container').style.width = "100vw";
+                document.getElementById('video-container').style.height = "100vh";
             }
         };
     </script>
